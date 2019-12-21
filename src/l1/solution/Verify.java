@@ -1,7 +1,7 @@
 package l1.solution;
+
 import java.util.ArrayList;
 import javafx.util.Pair;
-import l1.solution.Solution;
 
 public class Verify{
 
