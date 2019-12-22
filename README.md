@@ -1,7 +1,14 @@
 # foo-bar
 
 These are my solutions to the foo-bar challenge invitation
-I got from Google.
+I got from
+<span style="color: #0091ea; font-weight:bold; font-size: x-large">G</span>
+<span style="color: #f44336; font-weight:bold; font-size: x-large">o</span>
+<span style="color: #ffc107; font-weight:bold; font-size: x-large">o</span>
+<span style="color: #0091ea; font-weight:bold; font-size: x-large">g</span>
+<span style="color: #4caf50; font-weight:bold; font-size: x-large">l</span>
+<span style="color: #f44336; font-weight:bold; font-size: x-large">e</span>.
+
 
 This project is not yet finished, current status is:  
 ![status](./status.png)
@@ -31,13 +38,13 @@ run the solution provided under the corresponding
 Based on what I have read until know, this is how the whole challenge
 is structured.
 
-| Level | Challenge | Time limit **for each challenge** | Reward after completion |
-|-------|-----------|-----------------------------------|-------------------------|
-| 1     | 1         | 2 days                            | -                       |
+| Level | Challenge | Time limit **for each challenge** | Reward after completion             |
+|-------|-----------|-----------------------------------|-------------------------------------|
+| 1     | 1         | 2 days                            | -                                   |
 | 2     | 2         | 3 days                            | Friend referral link<sup>1</sup>    |
 | 3     | 3         | 4 days                            | Google Interview<sup>2</sup>        |
-| 4     | 2         | 15 days                           | ??                      |
-| 5     | 1         | 25 days                           | ??                      |
+| 4     | 2         | 15 days                           | Another friend referral link        |
+| 5     | 1         | 25 days                           | ??                                  |
 
 >> 1. A referral link allows the person you send it to, to enter foobar.
 >> 2. You are asked to fill out your personal info, if you wish, then
