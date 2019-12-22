@@ -1,7 +1,34 @@
 package l3.c1.solution;
+
 import java.lang.Math;
+import java.util.Set;
 import java.util.HashSet;
-import javafx.util.Pair;
+import java.util.Objects;
+
+// a generic Cell class because javafx.util.Cell is not supported
+class Cell extends Object{
+    private int row;
+    private int col;
+
+    public Cell(int row, int col){
+        this.row = row;
+        this.col = col;
+    }
+
+    public int getRow(){return this.row;}
+    public int getCol(){return this.col;}
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(row + col);
+    }
+
+    @Override
+    public boolean equals(Object cell){
+        return row == ((Cell)cell).getRow() ? true : false;
+    }
+
+}
 
 public class Solution{
 
@@ -13,9 +40,9 @@ public class Solution{
         return row == n - 1 && col == m - 1 ? true : false;
     }
 
-    private static int findPath(int[][] grid, Pair<Integer, Integer> cell, 
-                                boolean wallRemoved, HashSet<Pair<Integer, Integer>> frontier){ 
-        int row = cell.getKey(), col = cell.getValue();
+    private static int findPath(int[][] grid, Cell cell, 
+                                boolean wallRemoved, Set<Cell> frontier){ 
+        int row = cell.getRow(), col = cell.getCol();
         if(Solution.goalTest(grid, row, col))
             return 1;
 
@@ -34,10 +61,10 @@ public class Solution{
             wallRemoved = true;
         
         // estimate the optimal solution for each possible move
-        int left = Solution.findPath(grid, new Pair<Integer, Integer>(row, col - 1), wallRemoved, frontier);
-        int top = Solution.findPath(grid, new Pair<Integer, Integer>(row - 1, col), wallRemoved, frontier);
-        int right = Solution.findPath(grid, new Pair<Integer, Integer>(row, col + 1), wallRemoved, frontier);
-        int down = Solution.findPath(grid, new Pair<Integer, Integer>(row + 1, col), wallRemoved, frontier);
+        int left = Solution.findPath(grid, new Cell(row, col - 1), wallRemoved, frontier);
+        int top = Solution.findPath(grid, new Cell(row - 1, col), wallRemoved, frontier);
+        int right = Solution.findPath(grid, new Cell(row, col + 1), wallRemoved, frontier);
+        int down = Solution.findPath(grid, new Cell(row + 1, col), wallRemoved, frontier);
 
         // remove this cell from the frontier
         frontier.remove(cell);
@@ -49,7 +76,7 @@ public class Solution{
 
     // find the path recursively starting from the upper-left corner
     public static int solution(int[][] grid){
-        HashSet<Pair<Integer, Integer>> frontier = new HashSet<>();
-        return Solution.findPath(grid, new Pair<Integer, Integer>(0, 0), false, frontier); 
+        Set<Cell> frontier = new HashSet<>();
+        return Solution.findPath(grid, new Cell(0, 0), false, frontier); 
     }
 }
