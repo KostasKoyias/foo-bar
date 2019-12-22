@@ -20,7 +20,7 @@ foo-bar/src >> javac l1/solution/Verify.java
 foo-bar/src >> java l1.solution.Verify
 ```
 
-Until now, in each challenge, Google provides 2-3 out of the 5-6 total
+Until now, in each challenge, Google provides 2-3 out of the 5-10 total
 test cases as examples. The rest of them are hidden.  
 For each challenge, source files named **Verify.java**
 run the solution provided under the corresponding
