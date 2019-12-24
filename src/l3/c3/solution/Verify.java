@@ -1,4 +1,4 @@
-package l3.c1.solution;
+package l3.c3.solution;
 
 public class Verify{
 
