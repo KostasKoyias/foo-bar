@@ -61,14 +61,17 @@ public class Solution{
 
 
         // represent radius in the most simplified form of (numerator, denominator)
+        // get the radius for the 1st gear so that the last has half that radius
         firstGearRadius = new Fraction(2 * sum, even ? 3 : 1);
         firstGearRadius.reduce();
 
+        // estimate the radius of every next gear
         for(j = 0, radius = new Fraction(firstGearRadius); j < pegs.length-2; j++){
             int centerDistance = pegs[j + 1] - pegs[j];
             int numerator = centerDistance * radius.denominator - radius.numerator;
             Fraction nextRadius = new Fraction(numerator, radius.denominator);
 
+            // if some radius is not valid then the task is impossible
             if(nextRadius.toInt() < 1 || radius.toInt() < 1)
                 return new int[]{-1, -1};
             else

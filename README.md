@@ -9,7 +9,6 @@ I got from
 <span style="color: #4caf50; font-weight:bold; font-size: x-large">l</span>
 <span style="color: #f44336; font-weight:bold; font-size: x-large">e</span>.
 
-
 This project is not yet finished, current status is:  
 ![status](./status.png)
 
@@ -44,11 +43,36 @@ is structured.
 | 2     | 2         | 3 days                            | Friend referral link<sup>1</sup>    |
 | 3     | 3         | 4 days                            | Google Interview<sup>2</sup>        |
 | 4     | 2         | 15 days                           | Another friend referral link        |
-| 5     | 1         | 25 days                           | ??                                  |
+| 5     | 1         | 25 days                           | **??**                              |
 
 >> 1. A referral link allows the person you send it to, to enter foobar.
 >> 2. You are asked to fill out your personal info, if you wish, then
  a Google recruiter will contact you soon.
+
+## Challenges
+
+* Level 1
+
+  1. [Braille Translation](./src/l1/readme.txt)
+
+* Level 2
+  1. [Ion Flux Relabeling](./src/l2/c1/readme.txt)
+  2. [Gearing Up for Destruction](./src/l2/c2/readme.txt)
+
+* Level 3
+
+  1. [Prepare the Bunnies' Escape](./src/l3/c1/readme.txt)
+  2. [The Grandest Staircase Of Them All](./src/l3/c2/readme.txt)
+  3. **??**
+
+* Level 4
+
+  1. **??**
+  2. **??**
+
+* Level 5
+
+  1. **??**
 
 ## Contribute
 
