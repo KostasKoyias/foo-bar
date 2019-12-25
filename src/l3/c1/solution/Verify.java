@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.util.Pair;
 import utils.Tester;
+import utils.Utils;
 
 public class Verify{
 
@@ -39,12 +40,8 @@ public class Verify{
 
         int passed = 0;
         for(Pair<Object, Object> test : tests){
-            StringBuilder key = new StringBuilder();
-            for(int[] row : (int[][])test.getKey())
-                key.append("\n\t").append(Arrays.toString(row));
-            key.trimToSize();
-
-            passed += Tester.test(Solution.solution((int [][])test.getKey()), key.toString(), test.getValue());
+            String key = Utils.matrixToString((int[][])test.getKey());
+            passed += Tester.test(Solution.solution((int [][])test.getKey()), key, test.getValue());
         }
 
         Tester.displayResult(passed, tests.size());

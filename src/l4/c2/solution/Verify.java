@@ -1,7 +1,7 @@
-package l4.c1.solution;
+package l4.c2.solution;
 
 import javafx.util.Pair;
-import src.utils.Tester;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Verify{
 
     public static void main(String[] args){
 
-        List<Pair<Object, Object>> tests = new ArrayList();
+        List<Pair<Object, Object>> tests = new ArrayList<>();
 
         int passed = 0;
         for(Pair<Object, Object> test : tests)

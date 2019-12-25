@@ -2,6 +2,7 @@ package l4.c1.solution;
 
 import javafx.util.Pair;
 import utils.Tester;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,7 @@ class Test{
         return "Test{" +
                 "startingRooms=" + Arrays.toString(entrances) +
                 ", exitRooms=" + Arrays.toString(exits) +
-                ", matrix=" + Arrays.toString(matrix) +
+                ", matrix=" + Utils.matrixToString(matrix) +
                 '}';
     }
 }
