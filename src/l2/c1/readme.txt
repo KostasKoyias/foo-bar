@@ -1,5 +1,3 @@
-/* This was slightly modified */
-
 Ion Flux Relabeling
 ===================
 Oh no! Commander Lambda's latest experiment to improve the efficiency

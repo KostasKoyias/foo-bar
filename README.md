@@ -74,6 +74,9 @@ is structured.
 
   1. **??**
 
+>> Note that the *readme* files were slightly simplified
+while solving the corresponding challenge.
+
 ## Contribute
 
 You are welcome to fork this repository and submit your own solutions.
