@@ -3,7 +3,7 @@ package l3.c1.solution;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.util.Pair;
-import l3.Tester;
+import utils.Tester;
 
 public class Verify{
 

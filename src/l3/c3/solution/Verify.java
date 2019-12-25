@@ -1,7 +1,7 @@
 package l3.c3.solution;
 
 import javafx.util.Pair;
-import l3.Tester;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.Arrays;

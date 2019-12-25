@@ -1,5 +1,5 @@
 package l2.c1.solution;
-import l3.Tester;
+import utils.Tester;
 
 import java.util.ArrayList;
 import java.util.Arrays;

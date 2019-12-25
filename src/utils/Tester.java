@@ -1,4 +1,4 @@
-package l3;
+package utils;
 
 public class Tester {
 
