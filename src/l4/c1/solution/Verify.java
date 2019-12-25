@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import utils.Tester;
 import utils.Utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ class Test{
 
 public class Verify{
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
 
         List<Pair<Object, Object>> tests = new ArrayList<>();
 
@@ -48,6 +49,30 @@ public class Verify{
                              {0, 0, 0, 0, 6, 6},
                              {0, 0, 0, 0, 0, 0},
                              {0, 0, 0, 0, 0, 0}}), 16));
+
+        tests.add(new Pair<>(new Test(new int[]{0}, new int[]{6},
+                new int[][]
+                        {{0, 9, 6, 0, 0, 6, 0},
+                         {0, 0, 0, 8, 0, 0, 0},
+                         {0, 0, 0, 0, 3, 0, 0},
+                         {0, 0, 0, 0, 0, 0, 7},
+                         {0, 0, 0, 0, 0, 0, 5},
+                         {0, 0, 0, 2, 4, 0, 4},
+                         {0, 0, 0, 0, 0, 0, 0}}), 16));
+
+        tests.add(new Pair<>(new Test(new int[]{0}, new int[]{5},
+                new int[][]
+                        {{0, 16, 13,  0,  0,  0},
+                         {0,  0, 10, 12,  0,  0},
+                         {0,  4,  0,  0, 14,  0},
+                         {0,  0,  9,  0,  0, 20},
+                         {0,  0,  0,  7,  0,  4},
+                         {0,  0,  0,  0,  0,  0}}), 23));
+
+        tests.add(new Pair<>(new Test(new int[]{0}, new int[]{1},
+                new int[][]
+                        {{0, 200},
+                         {0,   0}}), 200));
 
         int passed = 0;
         for(Pair<Object, Object> test : tests){
