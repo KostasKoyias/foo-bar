@@ -1,14 +1,12 @@
 package l3;
 
-import javafx.util.Pair;
-
 public class Tester {
 
-    public static int test(Object sol, Pair<Object, Object> test){
+    public static int test(Object sol, String key, Object value){
 
-        System.out.print(sol.equals(test.getValue()) ? "\u001B[32mPassed" : "\u001B[31mFailed");
-        System.out.println("\u001B[0m solution(" + test.getKey().toString() + ") = " + sol.toString());
-        return sol.equals(test.getValue()) ? 1 : 0;
+        System.out.print(sol.equals(value) ? "\u001B[32mPassed" : "\u001B[31mFailed");
+        System.out.println("\u001B[0m: solution(" + key + ") = " + sol.toString());
+        return sol.equals(value) ? 1 : 0;
     }
 
     public static void displayResult(int passed, int total){

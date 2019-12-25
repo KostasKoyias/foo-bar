@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import l3.Tester;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Verify{
@@ -15,8 +16,10 @@ public class Verify{
         tests.add(new Pair<>(new int[]{1, 2, 3, 4, 5, 6}, 3));
 
         int passed = 0;
-        for(Pair<Object, Object> test : tests)
-            passed += Tester.test(Solution.solution((int[])test.getKey()), test);
+        for(Pair<Object, Object> test : tests){
+            String key = Arrays.toString((int[])test.getKey());
+            passed += Tester.test(Solution.solution((int[])test.getKey()), key, test.getValue());
+        }
 
         Tester.displayResult(passed, tests.size());
     }

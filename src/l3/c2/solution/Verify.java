@@ -26,7 +26,7 @@ public class Verify{
 
         int passed = 0;
         for(Pair<Object, Object> test : tests)
-            passed += Tester.test(Solution.solution((int)test.getKey()), test);
+            passed += Tester.test(Solution.solution((int)test.getKey()), test.getKey().toString(), test.getValue());
 
         Tester.displayResult(passed, tests.size());
     }
