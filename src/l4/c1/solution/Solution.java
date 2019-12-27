@@ -1,83 +1,148 @@
 package l4.c1.solution;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import utils.Utils;
+import java.util.*;
 
 public class Solution{
 
-    public static int solution(int[] entrances, int[] out, int[][] path) {
-        final int MAX_STEPS = 50;
-        List<Integer> entries = Arrays.stream(entrances).boxed().collect(Collectors.toList());
-        List<Integer> exits = Arrays.stream(out).boxed().collect(Collectors.toList());
+    // given the target list and the flow matrix, add up each target's column
+    private static int totalFlow(int[][] flow, int[] targets){
+        int total = 0;
 
-        // memo represents the number of bunnies in each room at a certain moment in time
-        int[] memo = memoInit(entrances, path.length);
+        for(int target : targets)
+            for(int[] fl : flow)
+                total += fl[target];
 
-        // max bunnies is the maximum number of bunnies having reached an exit at any given moment
-        int maxBunnies = 0, steps = 0;
-
-        // as long as the starting list is not the same as the ending list
-        while(!entries.equals(exits) && steps++ < MAX_STEPS){
-
-            // update number of bunnies in each room
-            List<Integer> nextEntries = memoUpdate(entries, path, memo);
-
-            // update maximum bunnies escaping per moment of time
-            // by looking at the number of bunnies in each exit
-            maxBunnies += Math.max(atExits(exits, memo), maxBunnies);
-            entries = nextEntries;
-        }
-
-        return maxBunnies;
+        return total;
     }
 
-    // update memo for each starting point of a given moment in time
-    private static List<Integer> memoUpdate(List<Integer> entries, int[][] path, int[] memo){
-        List<Integer> nextEntries = new ArrayList<>();
-        //@System.out.println("Entries: " + entries.toString());
+    // based on what flows, determine whether we could add or remove flow amongst any pair of nodes
+    private static int[][] updateResidualGraph(int[][] capacity, int[][] flow){
+        int[][] residualGraph = new int[capacity.length][capacity[0].length];
 
-        // for each starting point of this given moment in time
-        for(int i = 0; i < entries.size() && memo[entries.get(i)] > 0; i++){
-            int entry = entries.get(i);
-            //@System.out.println("Entry: " + i);
+        for(int i = 0; i < capacity.length; i++){
+            for(int j = 0; j < capacity[0].length; j++){
 
-            // for each neighbor in the adjacency matrix
-            for(int nb = 0; nb < path[entry].length; nb++){
-                if(path[entry][nb] == 0)
+                // create a forward edge for unused capacity
+                if(capacity[i][j] > flow[i][j])
+                    residualGraph[i][j] = capacity[i][j] - flow[i][j];
+
+                // create a backwards edge for used capacity to be restored
+                if(flow[i][j] > 0)
+                    residualGraph[j][i] = flow[i][j];
+            }
+                
+        }
+
+        return residualGraph;
+    }
+
+    private static Set<Integer> getTargetSet(int[] targets){
+        Set<Integer> set = new HashSet<>();
+
+        for(int target : targets)
+            set.add(target);
+        return set;
+    }
+
+    // initialize storage for a BFS, adding all sources to the queue as if there was a super-starting-node
+    // connected to all of them, also put them in the visited map, mapping from node to parent(null in the 1st level)
+    private static List<Integer> storageInit(int[] sources, Map<Integer, Integer> visited){
+        List<Integer> queue = new LinkedList<>();
+
+        for(int source : sources){
+            queue.add(source);
+            visited.put(source, null);
+        }
+        return queue;
+    }
+
+    // construct path given the goal and map, mapping from node to parent along the path
+    private static List<Integer> constructPath(Map<Integer, Integer> visited, int target){
+        Integer current, parent;
+        List<Integer> path = new ArrayList<>();
+
+        // until reaching the root of the path, move from current to parent,
+        // add current in a stack each time so that you get the path in the appropriate order
+        path.add(target);
+        for(current = target, parent = visited.get(current); parent != null; current = parent, parent = visited.get(current))
+            path.add(0, parent);
+
+        return path;
+    }
+
+    private static List<Integer> bfs(int[][] graph, int[] sources, int[] targets){
+        Map<Integer, Integer> visited = new HashMap<>();
+        Set<Integer> targetSet;
+        List<Integer> queue;
+
+        // put targets in a HashSet for faster goal-test
+        targetSet = getTargetSet(targets);
+
+        // initialize queue with all source nodes & mark them as visited with no parent
+        queue = storageInit(sources, visited);
+        while(!queue.isEmpty()){
+            int parent = queue.remove(0);
+
+            for(int neighbor = 0; neighbor < graph[parent].length; neighbor++){
+
+                // ignore node if not connected or already visited
+                if(graph[parent][neighbor] == 0 || visited.containsKey(neighbor))
                     continue;
 
-                //@System.out.println("\tNeighbor: " + nb);
-                int fit = Math.min(path[entry][nb], memo[entry]);
-                memo[entry] -= fit;
-                memo[nb] += fit;
+                // map neighbor to it's parent and apply goal-test
+                visited.put(neighbor, parent);
+                if(targetSet.contains(neighbor))
+                    return constructPath(visited, neighbor);
 
-                //@System.out.println("\tMemo: " + Arrays.toString(memo));
-                if(!nextEntries.contains(nb))
-                    nextEntries.add(nb);
+                // push neighbor in the queue to be processed
+                queue.add(neighbor);
             }
         }
 
-        return nextEntries;
+        return null;
     }
 
-    // initialize memo, representing the number of bunnies in each room
-    private static int[] memoInit(int[] entries, int len){
-        int[] memo = new int[len];
+    // get the minimum weight edge along a path in a graph, here applied on the residual graph
+    private static int minWeightEdge(int[][] graph, List<Integer> path){
+        int bottleNeck = Integer.MAX_VALUE;
 
-        // starting rooms initially contain the maximum number of bunnies possible
-        for(int entry : entries)
-            memo[entry] = Integer.MAX_VALUE;
-
-        return memo;
+        for(int i = 0; i < path.size()-1; i++)
+            bottleNeck = Math.min(bottleNeck, graph[path.get(i)][path.get(i + 1)]);
+        return bottleNeck;
     }
 
-    // estimate the number of bunnies reaching the ending points at this time step
-    private static int atExits(List<Integer> exits, int[] memo){
-        int bunnies = 0;
-        for(int exit : exits)
-            bunnies += memo[exit];
-        return bunnies;
+    // increment total flow from s to t flow by either adding or removing flow
+    // amongst nodes of the augmenting path in the residual graph
+    private static void updateFlow(int[][] capacity, int[][] residualGraph, List<Integer> path, int[][] flow){
+        int bottleNeck = minWeightEdge(residualGraph, path);
+
+        for(int i = 0; i < path.size()-1; i++){
+            int u = path.get(i), v = path.get(i + 1);
+
+            if(capacity[u][v] > 0)
+                flow[u][v] += bottleNeck;
+            else
+                flow[v][u] -= bottleNeck;
+        }
+    }
+
+    public static int solution(int[] sources, int[] targets, int[][] capacity) {
+        int[][] residualGraph, flow = new int[capacity.length][capacity[0].length];
+        List<Integer> path;
+
+        // residual graph is initially same as the original because nothing flows
+        residualGraph = Utils.matrixCopy(capacity);
+        path = bfs(residualGraph, sources, targets);
+
+        // as long as there is an augmenting path, update flow amongst nodes of that path
+        // increasing total flow from sources to targets
+        while(path != null){
+            updateFlow(capacity, residualGraph, path, flow);
+            residualGraph = updateResidualGraph(capacity, flow);
+            path = bfs(residualGraph, sources, targets);
+        }
+
+        return totalFlow(flow, targets);
     }
 }
