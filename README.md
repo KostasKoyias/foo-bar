@@ -1,6 +1,6 @@
 # foo-bar
 
-These are my solutions to the foo-bar challenge invitation
+These are my solutions to the [foo-bar challenge](#more-information) invitation
 I got from
 <span style="color: #0091ea; font-weight:bold; font-size: x-large">G</span>
 <span style="color: #f44336; font-weight:bold; font-size: x-large">o</span>
@@ -22,8 +22,9 @@ After cloning/forking, to compile and run, change directory into `foo-bar/src`
 and type
 
 ```bash
-foo-bar/src >> javac l1/solution/Verify.java
-foo-bar/src >> java l1.solution.Verify
+foo-bar/src >> make l4/c1
+foo-bar/src >> cd ../build
+foo-bar/build >> java l4.c1.solution.Verify
 ```
 
 Until now, in each challenge, Google provides 2-3 out of the 5-10 total
@@ -63,11 +64,11 @@ is structured.
 
   1. [Prepare the Bunnies' Escape](./src/l3/c1/readme.txt)
   2. [The Grandest Staircase Of Them All](./src/l3/c2/readme.txt)
-  3. **??**
+  3. [Find the Access Codes](./src/l3/c3/readme.txt)
 
 * Level 4
 
-  1. **??**
+  1. [Escape Pods](./src/l4/c1/readme.txt)
   2. **??**
 
 * Level 5
@@ -84,7 +85,7 @@ Make a pull request and your version will be reviewed within a few days.
 
 ## More information
 
-To learn more about Google's foo.bar challenge,
+To learn more about Google's foobar challenge,
 check out some links below:
 
 1. [medium](https://medium.com/chingu/my-experience-with-the-google-foobar-challenge-and-tips-on-what-to-do-if-you-get-it-9848d31d3d20)
