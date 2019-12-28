@@ -22,6 +22,6 @@ class State implements Comparable<State> {
 
     @Override
     public int compareTo(State state) {
-        return state.pathCost - this.pathCost;
+        return state.bunnies.length - this.bunnies.length;
     }
 }
