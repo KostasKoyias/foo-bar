@@ -2,7 +2,7 @@ package l4.c2.solution;
 
 import java.util.Arrays;
 
-class State{
+class State implements Comparable<State> {
     int node;
     int pathCost;
     int[] bunnies;
@@ -20,4 +20,8 @@ class State{
                 ", bunnies=" + Arrays.toString(bunnies) + '}';
     }
 
+    @Override
+    public int compareTo(State state) {
+        return state.pathCost - this.pathCost;
+    }
 }

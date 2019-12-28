@@ -70,7 +70,7 @@ public class Solution{
     // bunnies excluding those with a cost larger than the maximum we could bounce back from
     private static int[] bunniesBFS(int[][] graph, int limit, int[] shortestPathsToBulkhead){
         int[] maxBunnies = new int[]{};
-        List<State> queue = new LinkedList<>();
+        PriorityQueue<State> queue = new PriorityQueue<>();
         Set<State> visited = new HashSet<>();
 
         State start = new State(0, 0, maxBunnies);
@@ -78,7 +78,7 @@ public class Solution{
         visited.add(start);
 
         while(!queue.isEmpty()){
-            State current = queue.remove(0);
+            State current = queue.poll();
 
             // for each successor state
             for(int nb = 0; nb < graph[current.node].length; nb++){
