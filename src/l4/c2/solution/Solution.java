@@ -111,7 +111,7 @@ public class Solution{
     // update shortest paths vector in case a cheaper path was found
     private static void relaxEdge(int[][] graph, int[] shortestPaths, int src, int dst){
 
-        if(graph[src][dst] == 0)
+        if(src == dst)
             return;
 
         int alternativePath = Integer.MAX_VALUE;
@@ -121,7 +121,7 @@ public class Solution{
     }
 
     private static boolean negativeTest(int[][] graph, int[] shortestPaths, int src, int dst){
-        if(graph[src][dst] == 0 || shortestPaths[src] == Integer.MAX_VALUE)
+        if(src == dst || shortestPaths[src] == Integer.MAX_VALUE)
             return false;
 
         return graph[src][dst] + shortestPaths[src] < shortestPaths[dst];
