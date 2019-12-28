@@ -4,23 +4,20 @@ import java.util.Arrays;
 
 class State implements Comparable<State> {
     int node;
-    int pathCost;
     int[] bunnies;
 
-    State(int node, int pathCost, int[] bunnies) {
+    State(int node, int[] bunnies) {
         this.node = node;
-        this.pathCost = pathCost;
         this.bunnies = bunnies;
     }
 
     @Override
     public String toString() {
         return "State{node = " + node +
-                ", pathCost=" + pathCost +
                 ", bunnies=" + Arrays.toString(bunnies) + '}';
     }
 
-    @Override
+    @Override // give priority to the state with the most bunnies
     public int compareTo(State state) {
         return state.bunnies.length - this.bunnies.length;
     }

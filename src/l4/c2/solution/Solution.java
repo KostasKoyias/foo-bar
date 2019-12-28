@@ -71,28 +71,33 @@ public class Solution{
     private static int[] bunniesBFS(int[][] graph, int limit, int[] shortestPathsToBulkhead){
         int[] maxBunnies = new int[]{};
         PriorityQueue<State> queue = new PriorityQueue<>();
-        Set<State> visited = new HashSet<>();
+        Map<State, Integer> visited = new HashMap<>(); // map from (node, bunnies[]) -> pathCost
 
-        State start = new State(0, 0, maxBunnies);
+        State start = new State(0, maxBunnies);
         queue.add(start);
-        visited.add(start);
+        visited.put(start, 0);
 
         while(!queue.isEmpty()){
+
+            // get state with the most bunnies, seeking a full-bunny
             State current = queue.poll();
 
             // for each successor state
             for(int nb = 0; nb < graph[current.node].length; nb++){
                 int shortestPathToBulkhead = shortestPathsToBulkhead[nb];
-                int pathCost = current.pathCost + graph[current.node][nb];
-                State successor = new State(nb, pathCost, successorBunnies(current.bunnies, nb, graph.length));
+                int pathCost = visited.get(current) + graph[current.node][nb];
+                State successor = new State(nb, successorBunnies(current.bunnies, nb, graph.length));
 
                 // omit successor state if there is no way of getting to the bulkHead on time by going
-                // that way, even by taking the shortest path or if this state has already been visited
-                if(nb == current.node || (shortestPathToBulkhead + pathCost > limit) || visited.contains(successor))
+                // that way, even by taking the shortest path or we have been to this exact state in the past
+                // meaning same node and bunny list, with more time remaining -- smaller pathCost
+                boolean tooLate = nb == current.node || (shortestPathToBulkhead + pathCost > limit);
+                int previousCost = visited.getOrDefault(successor, Integer.MAX_VALUE);
+                if(tooLate || previousCost < pathCost)
                     continue;
 
                 queue.add(successor);
-                visited.add(successor);
+                visited.put(successor, pathCost);
                 maxBunnies = getMaxBunnies(maxBunnies, successor.bunnies);
                 if(maxBunnies.length == graph.length - 2)
                     return allBunniesSaved(graph.length);
