@@ -5,7 +5,6 @@ import utils.Tester;
 import utils.Matrix;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Verify{
@@ -14,7 +13,7 @@ public class Verify{
 
         List<Pair<Pair<int[][], Integer>, Object>> tests = new ArrayList<>();
 
-        /*tests.add(new Pair<>(new Pair<>
+        tests.add(new Pair<>(new Pair<>
                 (new int[][]{
                 {0, 1, 1, 1, 1},
                 {1, 0, 1, 1, 1},
@@ -28,15 +27,7 @@ public class Verify{
                 {9, 0, 2, 2, -1},
                 {9, 3, 0, 2, -1},
                 {9, 3, 2, 0, -1},
-                {9, 3, 2, 2, 0}}, 1), new int[]{1, 2}));*/
-
-        tests.add(new Pair<>(new Pair<>
-                (new int[][]{
-                { 0,  0, -2, 0, 0},
-                { 7,  0,  0, 0, 0},
-                { 5, -4,  8, 0, 0},
-                {-3,  9,  0, 0, 0},
-                { 0,  0,  6, 7, 0}}, 1), new int[]{1, 2}));
+                {9, 3, 2, 2, 0}}, 1), new int[]{1, 2}));
 
         int passed = 0;
         for(Pair<Pair<int[][], Integer>, Object> test : tests){
@@ -44,11 +35,11 @@ public class Verify{
             int[][] times = input.getKey();
             int limit = input.getValue();
             Solution.solution(times, limit); //@@@
-            //passed += Tester.test(Solution.solution(times, limit),
-            //        Matrix.matrixToString(times) + ", " + limit,
-            //        test.getValue());
+            passed += Tester.testVector(Solution.solution(times, limit),
+                    Matrix.matrixToString(times) + ", " + limit,
+                    (int[])test.getValue());
         }
 
-        //Tester.displayResult(passed, tests.size());
+        Tester.displayResult(passed, tests.size());
     }
 }

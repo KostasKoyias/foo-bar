@@ -21,7 +21,6 @@ public class Solution{
         for(i = 0; i < bunnies.length && bunnies[i] < bunny; i++)
             rv[i] = bunnies[i];
 
-
         // insert bunny in the middle
         rv[i] = bunny;
 
@@ -33,8 +32,11 @@ public class Solution{
     }
 
     // add a bunny in the appropriate position of a bunnies array, if it does not exist already
-    private static int[] successorBunnies(int[] bunniesUntilNow, int successor){
-        return indexOf(bunniesUntilNow, successor) != -1 ? bunniesUntilNow : addBunny(bunniesUntilNow, successor);
+    private static int[] successorBunnies(int[] bunniesUntilNow, int successor, int total){
+        if(successor == 0 || successor == total -1 || indexOf(bunniesUntilNow, successor) != -1)
+            return bunniesUntilNow;
+        else
+            return addBunny(bunniesUntilNow, successor);
     }
 
     // save all bunnies, return a list with all index from 0 to bunnies by excluding starting and bulkhead points
@@ -82,21 +84,23 @@ public class Solution{
             for(int nb = 0; nb < graph[current.node].length; nb++){
                 int shortestPathToBulkhead = shortestPathsToBulkhead[nb];
                 int pathCost = current.pathCost + graph[current.node][nb];
-                State successor = new State(nb, pathCost, successorBunnies(current.bunnies, nb));
+                State successor = new State(nb, pathCost, successorBunnies(current.bunnies, nb, graph.length));
 
                 // omit successor state if there is no way of getting to the bulkHead on time by going
                 // that way, even by taking the shortest path or if this state has already been visited
-                if(nb == current.node || shortestPathToBulkhead > pathCost || visited.contains(successor))
+                if(nb == current.node || (shortestPathToBulkhead + pathCost > limit) || visited.contains(successor))
                     continue;
 
                 queue.add(successor);
                 visited.add(successor);
                 maxBunnies = getMaxBunnies(maxBunnies, successor.bunnies);
+                if(maxBunnies.length == graph.length - 2)
+                    return allBunniesSaved(graph.length);
 
             }
         }
 
-        return maxBunnies;
+        return Arrays.stream(maxBunnies).map(bunny -> bunny -1).toArray();
     }
 
     // update shortest paths vector in case a cheaper path was found
@@ -145,13 +149,12 @@ public class Solution{
     }
     
     public static int[] solution(int[][] graph, int limit){
-        int[] shortestPathsToBulkhead = bellmanFord(graph, graph.length-1);
+        int[] shortestPathsToBulkhead = bellmanFord(Matrix.matrixTranspose(graph), graph.length-1);
 
         // in case of a negative cycle we never run out of time, therefore all bunnies can be saved
         if(shortestPathsToBulkhead == null)
             return allBunniesSaved(graph.length);
 
-        System.out.println(Arrays.toString(shortestPathsToBulkhead));
-        return new int[]{};  //bunniesBFS(graph, limit, shortestPathsToBulkhead);
+        return bunniesBFS(graph, limit, shortestPathsToBulkhead);
     }
 }

@@ -32,5 +32,4 @@ public class Matrix {
 
         return  transpose;
     }
-
 }

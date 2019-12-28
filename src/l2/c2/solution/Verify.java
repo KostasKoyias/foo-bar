@@ -16,11 +16,8 @@ public class Verify{
         
         passed = 0;
         for(Pair<Object, Object> test : tests) {
-            int[] solution = Solution.solution((int[])test.getKey()), value = (int[])test.getValue();
-            System.out.print(Arrays.equals(solution, value) ? "\u001B[32mPassed" : "\u001B[31mFailed");
-            System.out.println("\u001B[0m: solution(" +
-                    Arrays.toString((int[])test.getKey()) + ") = " + Arrays.toString(solution));
-            passed += Arrays.equals(solution, (int[])test.getValue()) ? 1 : 0;
+            int[] solution = Solution.solution((int[])test.getKey()), expected = (int[])test.getValue();
+            passed += Tester.testVector(solution, Arrays.toString((int[])test.getKey()), expected);
         }
 
         Tester.displayResult(passed, tests.size());

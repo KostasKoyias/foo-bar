@@ -1,5 +1,7 @@
 package l4.c2.solution;
 
+import java.util.Arrays;
+
 class State{
     int node;
     int pathCost;
@@ -10,4 +12,12 @@ class State{
         this.pathCost = pathCost;
         this.bunnies = bunnies;
     }
+
+    @Override
+    public String toString() {
+        return "State{node = " + node +
+                ", pathCost=" + pathCost +
+                ", bunnies=" + Arrays.toString(bunnies) + '}';
+    }
+
 }
