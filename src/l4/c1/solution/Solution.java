@@ -1,6 +1,6 @@
 package l4.c1.solution;
 
-import utils.Utils;
+import utils.Matrix;
 import java.util.*;
 
 public class Solution{
@@ -132,7 +132,7 @@ public class Solution{
         List<Integer> path;
 
         // residual graph is initially same as the original because nothing flows
-        residualGraph = Utils.matrixCopy(capacity);
+        residualGraph = Matrix.matrixCopy(capacity);
         path = bfs(residualGraph, sources, targets);
 
         // as long as there is an augmenting path, update flow amongst nodes of that path

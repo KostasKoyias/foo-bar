@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Arrays;
 
-public class Utils {
+public class Matrix {
 
     public static String matrixToString(int[][] matrix){
         StringBuilder str = new StringBuilder();
@@ -20,6 +20,17 @@ public class Utils {
             copy[i] = Arrays.copyOf(matrix[i], matrix[i].length);
 
         return copy;
+    }
+
+    public static int[][] matrixTranspose(int[][] matrix){
+        int[][] transpose = new int[matrix.length][matrix[0].length];
+
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++)
+                transpose[j][i] = matrix[i][j];
+        }
+
+        return  transpose;
     }
 
 }

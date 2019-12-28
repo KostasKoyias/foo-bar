@@ -1,10 +1,10 @@
 package l3.c1.solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import javafx.util.Pair;
 import utils.Tester;
-import utils.Utils;
+import utils.Matrix;
 
 public class Verify{
 
@@ -40,7 +40,7 @@ public class Verify{
 
         int passed = 0;
         for(Pair<Object, Object> test : tests){
-            String key = Utils.matrixToString((int[][])test.getKey());
+            String key = Matrix.matrixToString((int[][])test.getKey());
             passed += Tester.test(Solution.solution((int [][])test.getKey()), key, test.getValue());
         }
 
