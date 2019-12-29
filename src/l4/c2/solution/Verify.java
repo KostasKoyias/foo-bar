@@ -3,7 +3,6 @@ package l4.c2.solution;
 import javafx.util.Pair;
 import utils.Tester;
 import utils.Matrix;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package l4.c2.solution;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 class State implements Comparable<State> {
     int node;
@@ -11,10 +12,20 @@ class State implements Comparable<State> {
         this.bunnies = bunnies;
     }
 
+    @Override // override equals & hash to store instances of State in a HashMap
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        State state = (State) object;
+        return this.node == state.node &&
+                Arrays.equals(this.bunnies, state.bunnies);
+    }
+
     @Override
-    public String toString() {
-        return "State{node = " + node +
-                ", bunnies=" + Arrays.toString(bunnies) + '}';
+    public int hashCode() {
+        int result = Objects.hash(this.node);
+        result = 31 * result + Arrays.hashCode(this.bunnies);
+        return result;
     }
 
     @Override // give priority to the state with the most bunnies

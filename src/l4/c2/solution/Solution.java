@@ -1,7 +1,10 @@
 package l4.c2.solution;
 
 import utils.Matrix;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class Solution{
 
@@ -68,7 +71,7 @@ public class Solution{
     // explore all possible states, defining one by the point we are at, the number of bunnies
     // we have and the time left in the game(limit - pathCost) and return the one with the most
     // bunnies excluding those with a cost larger than the maximum we could bounce back from
-    private static int[] bunniesBFS(int[][] graph, int limit, int[] shortestPathsToBulkhead){
+    private static int[] bunnySearch(int[][] graph, int limit, int[] shortestPathsToBulkhead){
         int[] maxBunnies = new int[]{};
         PriorityQueue<State> queue = new PriorityQueue<>();
         Map<State, Integer> visited = new HashMap<>(); // map from (node, bunnies[]) -> pathCost
@@ -79,7 +82,7 @@ public class Solution{
 
         while(!queue.isEmpty()){
 
-            // get state with the most bunnies, seeking a full-bunny
+            // get state with the most bunnies, seeking an all-bunnies save
             State current = queue.poll();
 
             // for each successor state
@@ -93,7 +96,7 @@ public class Solution{
                 // meaning same node and bunny list, with more time remaining -- smaller pathCost
                 boolean tooLate = nb == current.node || (shortestPathToBulkhead + pathCost > limit);
                 int previousCost = visited.getOrDefault(successor, Integer.MAX_VALUE);
-                if(tooLate || previousCost < pathCost)
+                if(tooLate || previousCost <= pathCost)
                     continue;
 
                 queue.add(successor);
@@ -160,6 +163,11 @@ public class Solution{
         if(shortestPathsToBulkhead == null)
             return allBunniesSaved(graph.length);
 
-        return bunniesBFS(graph, limit, shortestPathsToBulkhead);
+        // no bunnies can be saved if even the shortest path
+        // from start to bulkhead takes up too much time
+        if(shortestPathsToBulkhead[0] > limit)
+            return new int[]{};
+
+        return bunnySearch(graph, limit, shortestPathsToBulkhead);
     }
 }
