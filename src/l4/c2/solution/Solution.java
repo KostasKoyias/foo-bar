@@ -3,8 +3,9 @@ package l4.c2.solution;
 import utils.Matrix;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 public class Solution{
 
@@ -68,12 +69,12 @@ public class Solution{
         return i < maxBunnies.length && maxBunnies[i] < bunnies[i] ? maxBunnies : bunnies;
     }
 
-    // explore all possible states, defining one by the point we are at, the number of bunnies
-    // we have and the time left in the game(limit - pathCost) and return the one with the most
-    // bunnies excluding those with a cost larger than the maximum we could bounce back from
+    // explore all possible states in level-by-level(BFS), defining one by the node we are at
+    // and the number of bunnies we have, returning the one with the most bunnies
+    // excluding those with a cost larger than the maximum we could bounce back from
     private static int[] bunnySearch(int[][] graph, int limit, int[] shortestPathsToBulkhead){
         int[] maxBunnies = new int[]{};
-        PriorityQueue<State> queue = new PriorityQueue<>();
+        List<State> queue = new LinkedList<>();
         Map<State, Integer> visited = new HashMap<>(); // map from (node, bunnies[]) -> pathCost
 
         State start = new State(0, maxBunnies);
@@ -82,8 +83,7 @@ public class Solution{
 
         while(!queue.isEmpty()){
 
-            // get state with the most bunnies, seeking an all-bunnies save
-            State current = queue.poll();
+            State current = queue.remove(0);
 
             // for each successor state
             for(int nb = 0; nb < graph[current.node].length; nb++){

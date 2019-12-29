@@ -3,7 +3,7 @@ package l4.c2.solution;
 import java.util.Arrays;
 import java.util.Objects;
 
-class State implements Comparable<State> {
+class State{
     int node;
     int[] bunnies;
 
@@ -26,10 +26,5 @@ class State implements Comparable<State> {
         int result = Objects.hash(this.node);
         result = 31 * result + Arrays.hashCode(this.bunnies);
         return result;
-    }
-
-    @Override // give priority to the state with the most bunnies
-    public int compareTo(State state) {
-        return state.bunnies.length - this.bunnies.length;
     }
 }
