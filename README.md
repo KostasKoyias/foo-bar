@@ -44,7 +44,7 @@ is structured.
 | 2     | 2         | 3 days                            | Friend referral link<sup>1</sup>    |
 | 3     | 3         | 4 days                            | Google Interview<sup>2</sup>        |
 | 4     | 2         | 15 days                           | Another friend referral link        |
-| 5     | 1         | 25 days                           | **??**                              |
+| 5     | 1         | 22 days                           | **??**                              |
 
 >> 1. A referral link allows the person you send it to, to enter foobar.
 >> 2. You are asked to fill out your personal info, if you wish, then

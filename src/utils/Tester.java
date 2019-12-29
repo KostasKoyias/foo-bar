@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class Tester {
 
     public static int test(Object sol, String key, Object value){
+        if(sol == null)
+            return -1;
 
         System.out.print(sol.equals(value) ? "\u001B[32mPassed" : "\u001B[31mFailed");
         System.out.println("\u001B[0m: solution(" + key + ") = " + sol.toString());
