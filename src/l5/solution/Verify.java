@@ -13,8 +13,14 @@ public class Verify{
 
         List<Pair<Object, Object>> tests = new ArrayList<>();
 
-        tests.add(new Pair<>(new int[]{2, 3, 4}, "430"));
         tests.add(new Pair<>(new int[]{2, 2, 2}, "7"));
+        tests.add(new Pair<>(new int[]{2, 3, 4}, "430"));
+        tests.add(new Pair<>(new int[]{3, 3, 3}, "738"));
+        tests.add(new Pair<>(new int[]{3, 3, 4}, "8240"));
+        tests.add(new Pair<>(new int[]{3, 3, 5}, "57675"));
+        tests.add(new Pair<>(new int[]{4, 4, 4}, "7880456"));
+        tests.add(new Pair<>(new int[]{4, 4, 5}, "270656150"));
+        tests.add(new Pair<>(new int[]{5, 5, 5}, "20834113243925"));
 
         int passed = 0;
         for(Pair<Object, Object> test : tests){

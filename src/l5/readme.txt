@@ -2,8 +2,8 @@ Disorderly Escape
 =================
 
 Oh no! You've managed to free the bunny prisoners and escape Commander Lambdas exploding space station,
-but her team of elite starfighters has flanked your ship.
-If you dont jump to hyperspace, and fast, you'll be shot out of the sky!
+but her team of elite star-fighters has flanked your ship.
+If you don't jump to hyperspace, and fast, you'll be shot out of the sky!
 
 Problem is, to avoid detection by galactic law enforcement,
 Commander Lambda planted her space station in the middle of a quasar quantum flux field.

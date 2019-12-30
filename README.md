@@ -9,12 +9,9 @@ I got from
 <span style="color: #4caf50; font-weight:bold; font-size: x-large">l</span>
 <span style="color: #f44336; font-weight:bold; font-size: x-large">e</span>.
 
-This project is not yet finished, current status is:  
-![status](./status.png)
-
 ## Repo structure
 
-Until now, all solutions are implemented in **java**.  
+For all problems solved, standard **Java 8** was used.  
 Each level consists of 1 to 3 challenges, each of whom
 has it's own package under src with the corresponding level as root.
 
@@ -22,7 +19,7 @@ After cloning/forking, to compile and run, change directory into `foo-bar/src`
 and type
 
 ```bash
-foo-bar/src >> make l4/c1
+foo-bar/src >> make l4/c1  # or any other challenge
 foo-bar/src >> cd ../build
 foo-bar/build >> java l4.c1.solution.Verify
 ```
@@ -32,6 +29,8 @@ test cases as examples. The rest of them are hidden.
 For each challenge, source files named **Verify.java**
 run the solution provided under the corresponding
 **Solution.java** file against those test cases.
+Utilities under [Matrix.java](./src/utils/Matrix.java) are often used
+for common matrix operations throughout the project.
 
 ## Challenge structure
 
@@ -73,7 +72,7 @@ is structured.
 
 * Level 5
 
-  1. **??**
+  1. [Disorderly Escape](./src/l5/readme.txt)(not solved)
 
 >> Note that the *readme* files were slightly simplified
 while solving the corresponding challenge.
