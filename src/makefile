@@ -31,10 +31,10 @@ l3/c3: $(SRC)/l3/c3/solution/Verify.java $(SRC)/l3/c3/solution/Solution.java $(S
 	$(JC) $(JFLAGS) $^
 
 #### LEVEL 4
-l4/c1: $(SRC)/l4/c1/solution/Verify.java $(SRC)/l4/c1/solution/Solution.java $(SRC)/utils/Tester.java $(SRC)/utils/Utils.java
+l4/c1: $(SRC)/l4/c1/solution/Verify.java $(SRC)/l4/c1/solution/Solution.java $(SRC)/utils/Tester.java $(SRC)/utils/Matrix.java
 	$(JC) $(JFLAGS) $^
 
-l4/c2: $(SRC)/l4/c2/solution/Verify.java $(SRC)/l4/c2/solution/Solution.java  $(SRC)/utils/Tester.java
+l4/c2: $(SRC)/l4/c2/solution/Verify.java $(SRC)/l4/c2/solution/Solution.java  $(SRC)/utils/Tester.java $(SRC)/utils/Matrix.java
 	$(JC) $(JFLAGS) $^
 	
 ##### LEVEL 5

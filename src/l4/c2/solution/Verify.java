@@ -104,7 +104,6 @@ public class Verify{
             Pair<int[][], Integer> input = test.getKey();
             int[][] times = input.getKey();
             int limit = input.getValue();
-            Solution.solution(times, limit); //@@@
             passed += Tester.testVector(Solution.solution(times, limit),
                     Matrix.matrixToString(times) + ", " + limit,
                     (int[])test.getValue());

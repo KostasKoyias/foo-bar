@@ -68,7 +68,7 @@ is structured.
 * Level 4
 
   1. [Escape Pods](./src/l4/c1/readme.txt)
-  2. **??**
+  2. [Running with Bunnies](./src/l4/c2/readme.txt)
 
 * Level 5
 
