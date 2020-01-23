@@ -1,72 +1,32 @@
-Disorderly Escape
-=================
+Expanding Nebula
+================
 
-Oh no! You've managed to free the bunny prisoners and escape Commander Lambdas exploding space station,
-but her team of elite star-fighters has flanked your ship.
-If you don't jump to hyperspace, and fast, you'll be shot out of the sky!
+You've escaped Commander Lambda's exploding space station along with numerous escape pods full of bunnies. But - oh no! - one of the escape pods has flown into a nearby nebula, causing you to lose track of it. You start monitoring the nebula, but unfortunately, just a moment too late to find where the pod went. However, you do find that the gas of the steadily expanding nebula follows a simple pattern, meaning that you should be able to determine the previous state of the gas and narrow down where you might find the pod.
 
-Problem is, to avoid detection by galactic law enforcement,
-Commander Lambda planted her space station in the middle of a quasar quantum flux field.
-In order to make the jump to hyperspace,
-you need to know the configuration of celestial bodies in the quadrant you plan to jump through.
-In order to do *that*, you need to figure out how many configurations each quadrant could possibly have,
-so that you can pick the optimal quadrant through which you'll make your jump.
+From the scans of the nebula, you have found that it is very flat and distributed in distinct patches, so you can model it as a 2D grid. You find that the current existence of gas in a cell of the grid is determined exactly by its 4 nearby cells, specifically, (1) that cell, (2) the cell below it, (3) the cell to the right of it, and (4) the cell below and to the right of it. If, in the current state, exactly 1 of those 4 cells in the 2x2 block has gas, then it will also have gas in the next state. Otherwise, the cell will be empty in the next state.
 
-There's something important to note about quasar quantum flux fields' configurations: when drawn on a star grid,
-configurations are considered equivalent by grouping rather than by order.
-That is, for a given set of configurations,
-if you exchange the position of any two columns or any two rows some number of times,
-you'll find that all of those configurations are equivalent in that way - in grouping, rather than order.
+For example, let's say the previous state of the grid (p) was:
+.O..
+..O.
+...O
+O...
 
-Write a function solution(w, h, s) that takes 3 integers and returns the number of unique, non-equivalent configurations
-that can be found on a star grid w blocks wide and h blocks tall where each celestial body has s possible states.
-Equivalency is defined as above: any two star grids with each celestial body in the same state where
-the actual order of the rows and columns do not matter (and can thus be freely swapped around).
-Star grid standardization means that the width and height of the grid will always be between 1 and 12, inclusive.
-And while there are a variety of celestial bodies in each grid, the number of states of those bodies is between 2 and 20, inclusive.
-The solution can be over 20 digits long, so return it as a decimal string.
-The intermediate values can also be large, so you will likely need to use at least 64-bit integers.
+To see how this grid will change to become the current grid (c) over the next time step, consider the 2x2 blocks of cells around each cell.  Of the 2x2 block of [p[0][0], p[0][1], p[1][0], p[1][1]], only p[0][1] has gas in it, which means this 2x2 block would become cell c[0][0] with gas in the next time step:
+.O -> O
+..
 
-For example, consider w=2, h=2, s=2. We have a 2x2 grid where each celestial body is
-either in state 0 (for instance, silent) or state 1 (for instance, noisy).
-We can examine which grids are equivalent by swapping rows and columns.
+Likewise, in the next 2x2 block to the right consisting of [p[0][1], p[0][2], p[1][1], p[1][2]], two of the containing cells have gas, so in the next state of the grid, c[0][1] will NOT have gas:
+O. -> .
+.O
 
-00
-00
+Following this pattern to its conclusion, from the previous state p, the current state of the grid c will be:
+O.O
+.O.
+O.O
 
-In the above configuration, all celestial bodies are "silent" - that is, they have a state of 0 - so any swap of row or column would keep it in the same state.
+Note that the resulting output will have 1 fewer row and column, since the bottom and rightmost cells do not have a cell below and to the right of them, respectively.
 
-00 00 01 10
-01 10 00 00
-
-1 celestial body is emitting noise - that is, has a state of 1 - so swapping rows and columns can put it in any of the 4 positions.  All four of the above configurations are equivalent.
-
-00 11
-11 00
-
-2 celestial bodies are emitting noise side-by-side.  Swapping columns leaves them unchanged, and swapping rows simply moves them between the top and bottom.  In both, the *groupings* are the same: one row with two bodies in state 0, one row with two bodies in state 1, and two columns with one of each state.
-
-01 10
-01 10
-
-2 noisy celestial bodies adjacent vertically. This is symmetric to the side-by-side case, but it is different because there's no way to transpose the grid.
-
-01 10
-10 01
-
-2 noisy celestial bodies diagonally.  Both have 2 rows and 2 columns that have one of each state, so they are equivalent to each other.
-
-01 10 11 11
-11 11 01 10
-
-3 noisy celestial bodies, similar to the case where only one of four is noisy.
-
-11
-11
-
-4 noisy celestial bodies.
-
-There are 7 distinct, non-equivalent grids in total, so solution(2, 2, 2) would return 7.
+Write a function solution(g) where g is an array of array of bools saying whether there is gas in each cell (the current scan of the nebula), and return an int with the number of possible previous states that could have resulted in that grid after 1 time step.  For instance, if the function were given the current state c above, it would deduce that the possible previous states were p (given above) as well as its horizontal and vertical reflections, and would return 4. The width of the grid will be between 3 and 50 inclusive, and the height of the grid will be between 3 and 9 inclusive.  The answer will always be less than one billion (10^9).
 
 Languages
 =========
@@ -81,26 +41,34 @@ Note that it may also be run against hidden test cases not shown here.
 
 -- Java cases --
 Input:
-Solution.solution(2, 3, 4)
+Solution.solution({{true, true, false, true, false, true, false, true, true, false}, {true, true, false, false, false, false, true, true, true, false}, {true, true, false, false, false, false, false, false, false, true}, {false, true, false, false, false, false, true, true, false, false}})
 Output:
-    430
+    11567
 
 Input:
-Solution.solution(2, 2, 2)
+Solution.solution({{true, false, true}, {false, true, false}, {true, false, true}})
 Output:
-    7
+    4
+
+Input:
+Solution.solution({{true, false, true, false, false, true, true, true}, {true, false, true, false, false, false, true, false}, {true, true, true, false, false, false, true, false}, {true, false, true, false, false, false, true, false}, {true, false, true, false, false, true, true, true}}
+Output:
+    254
 
 -- Python cases --
 Input:
-solution.solution(2, 3, 4)
+solution.solution([[True, True, False, True, False, True, False, True, True, False], [True, True, False, False, False, False, True, True, True, False], [True, True, False, False, False, False, False, False, False, True], [False, True, False, False, False, False, True, True, False, False]])
 Output:
-    430
+    11567
 
 Input:
-solution.solution(2, 2, 2)
+solution.solution([[True, False, True], [False, True, False], [True, False, True]])
 Output:
-    7
+    4
 
-Use verify [file] to test your solution and see how it does.
-When you are finished editing your code, use submit [file] to submit your answer.
-If your solution passes the test cases, it will be removed from your home folder.
+Input:
+solution.solution([[True, False, True, False, False, True, True, True], [True, False, True, False, False, False, True, False], [True, True, True, False, False, False, True, False], [True, False, True, False, False, False, True, False], [True, False, True, False, False, True, True, True]])
+Output:
+    254
+
+Use verify [file] to test your solution and see how it does. When you are finished editing your code, use submit [file] to submit your answer. If your solution passes the test cases, it will be removed from your home folder.

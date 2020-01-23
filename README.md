@@ -24,7 +24,7 @@ foo-bar/src >> cd ../build
 foo-bar/build >> java l4.c1.solution.Verify
 ```
 
-Until now, in each challenge, Google provides 2-3 out of the 5-10 total
+In each challenge, Google provides 2-3 out of the 5-10 total
 test cases as examples. The rest of them are hidden.  
 For each challenge, source files named **Verify.java**
 run the solution provided under the corresponding
@@ -43,7 +43,7 @@ is structured.
 | 2     | 2         | 3 days                            | Friend referral link<sup>1</sup>    |
 | 3     | 3         | 4 days                            | Google Interview<sup>2</sup>        |
 | 4     | 2         | 15 days                           | Another friend referral link        |
-| 5     | 1         | 22 days                           | **??**                              |
+| 5     | 1         | 22 days                           | -                                   |
 
 >> 1. A referral link allows the person you send it to, to enter foobar.
 >> 2. You are asked to fill out your personal info, if you wish, then
@@ -72,7 +72,7 @@ is structured.
 
 * Level 5
 
-  1. [Disorderly Escape](./src/l5/readme.txt)(not solved)
+  1. [Expanding Nebula](./src/l5/readme.txt)(not solved)
 
 >> Note that the *readme* files were slightly simplified
 while solving the corresponding challenge.
@@ -85,7 +85,7 @@ Make a pull request and your version will be reviewed within a few days.
 ## More information
 
 To learn more about Google's foobar challenge,
-check out some links below:
+check out some of the links below:
 
 1. [medium](https://medium.com/chingu/my-experience-with-the-google-foobar-challenge-and-tips-on-what-to-do-if-you-get-it-9848d31d3d20)
 2. [freeCodeCamp](https://www.freecodecamp.org/news/the-foobar-challenge-googles-hidden-test-for-developers-ed8027c1184/)
