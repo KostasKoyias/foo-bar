@@ -5,7 +5,7 @@ BUILD = $(BASE)/build
 JC = javac
 JFLAGS = -d $(BUILD) -Xlint:unchecked
 
-all: bld l1 l2/c1 l2/c1 l3/c1 l3/c2 l3/c3 l4/c1 l4/c2 l5
+all: bld l1 l2/c1 l2/c2 l3/c1 l3/c2 l3/c3 l4/c1 l4/c2 l5
 
 bld: $(shell mkdir -p $(BUILD))
 
@@ -43,4 +43,4 @@ l5: $(SRC)/l5/solution/Verify.java $(SRC)/l5/solution/Solution.java $(SRC)/utils
 
 ##### CLEAN UP ######
 clean:
-	rm -rf $(BUILD)/*.class
+	rm -rf $(BUILD)

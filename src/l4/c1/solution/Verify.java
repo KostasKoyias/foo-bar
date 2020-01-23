@@ -1,12 +1,12 @@
 package l4.c1.solution;
 
-import javafx.util.Pair;
-import utils.Tester;
-import utils.Matrix;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javafx.util.Pair;
+import utils.Matrix;
+import utils.Tester;
 
 class Test{
     int[] entrances;
