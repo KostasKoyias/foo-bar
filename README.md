@@ -22,11 +22,11 @@ and type
 ./gradlew build
 ```
 
-Then, to test a particular problem, for example l1, please type
+Then, to test a particular problem, for example `l2.c2`, please type
 
 <!-- TODO -->
 ```bash
-./graldew 
+./gradlew test --tests foo.bar.l2.c2.solution.SolutionTest
 ``` 
 
 In each challenge, Google provides 2-3 out of the 5-10 total
