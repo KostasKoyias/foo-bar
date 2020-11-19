@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:29.0-jre'
+    compile group: 'org.openjfx', name: 'javafx', version: '11', ext: 'pom'
+
+    // Use JUnit test framework with ParameterizedTest enabled
+    testCompile 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}

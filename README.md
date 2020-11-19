@@ -15,21 +15,26 @@ For all problems solved, standard **Java 8** was used.
 Each level consists of 1 to 3 challenges, each of whom
 has it's own package under src with the corresponding level as root.
 
-After cloning/forking, to compile and run, change directory into `foo-bar/src`
+After cloning/forking, please build the project with Gradle as follows
 and type
 
 ```bash
-foo-bar/src >> make l4/c1  # or any other challenge
-foo-bar/src >> cd ../build
-foo-bar/build >> java l4.c1.solution.Verify
+./gradlew build
 ```
+
+Then, to test a particular problem, for example l1, please type
+
+<!-- TODO -->
+```bash
+./graldew 
+``` 
 
 In each challenge, Google provides 2-3 out of the 5-10 total
 test cases as examples. The rest of them are hidden.  
 For each challenge, source files named **Verify.java**
 run the solution provided under the corresponding
 **Solution.java** file against those test cases.
-Utilities under [Matrix.java](./src/utils/Matrix.java) are often used
+Utilities under [Matrix.java](./src/main/java/foo/bar/utils/Matrix.java) are often used
 for common matrix operations throughout the project.
 
 ## Challenge structure
@@ -53,26 +58,26 @@ is structured.
 
 * Level 1
 
-  1. [Braille Translation](./src/l1/readme.txt)
+  1. [Braille Translation](./src/main/java/foo/bar/l1/readme.txt)
 
 * Level 2
-  1. [Ion Flux Relabeling](./src/l2/c1/readme.txt)
-  2. [Gearing Up for Destruction](./src/l2/c2/readme.txt)
+  1. [Ion Flux Relabeling](./src/main/java/foo/bar/l2/c1/readme.txt)
+  2. [Gearing Up for Destruction](./src/main/java/foo/bar/l2/c2/readme.txt)
 
 * Level 3
 
-  1. [Prepare the Bunnies' Escape](./src/l3/c1/readme.txt)
-  2. [The Grandest Staircase Of Them All](./src/l3/c2/readme.txt)
-  3. [Find the Access Codes](./src/l3/c3/readme.txt)
+  1. [Prepare the Bunnies' Escape](./src/main/java/foo/bar/l3/c1/readme.txt)
+  2. [The Grandest Staircase Of Them All](./src/main/java/foo/bar/l3/c2/readme.txt)
+  3. [Find the Access Codes](./src/main/java/foo/bar/l3/c3/readme.txt)
 
 * Level 4
 
-  1. [Escape Pods](./src/l4/c1/readme.txt)
-  2. [Running with Bunnies](./src/l4/c2/readme.txt)
+  1. [Escape Pods](./src/main/java/foo/bar/l4/c1/readme.txt)
+  2. [Running with Bunnies](./src/main/java/foo/bar/l4/c2/readme.txt)
 
 * Level 5
 
-  1. [Expanding Nebula](./src/l5/readme.txt)(not solved)
+  1. [Expanding Nebula](./src/main/java/foo/bar/l5/readme.txt)(not solved)
 
 >> Note that the *readme* files were slightly simplified
 while solving the corresponding challenge.
