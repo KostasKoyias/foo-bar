@@ -3,12 +3,17 @@ plugins {
     id 'checkstyle'
 }
 
+test {
+    useJUnitPlatform()
+}
+
 checkstyle {
     toolVersion '7.8.1'
     configFile file("config/checkstyle/checkstyle.xml")
 }
 checkstyleMain {
-    source ='src/main/java/foo/bar/l1'
+    source = 'src/main/java/foo/bar/l1'
+//    source = 'src/main/java/foo/bar/l2'
 }
 checkstyleTest {
     source ='src/test/java/foo/bar/l1'

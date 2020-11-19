@@ -1,4 +1,4 @@
-package l2.c2.solution;
+package foo.bar.l2.c2.solution;
 
 class Fraction {
     protected int numerator;            
@@ -52,8 +52,8 @@ public class Solution{
         if(pegs == null || pegs.length == 1)
             return new int[]{-1, -1};
 
-        even = pegs.length % 2 != 0 ? false : true;
-        sum = even ? -pegs[0] + pegs[pegs.length-1] : -pegs[0] - pegs[pegs.length-1];
+        even = pegs.length % 2 == 0;
+        sum = even ? -pegs[0] + pegs[pegs.length - 1] : -pegs[0] - pegs[pegs.length - 1];
 
         if(pegs.length > 2)
             for(int i = 1; i < pegs.length - 1; i++)

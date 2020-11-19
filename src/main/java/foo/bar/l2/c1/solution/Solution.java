@@ -1,5 +1,4 @@
 package foo.bar.l2.c1.solution;
-import java.lang.Math;
 
 public class Solution{
 
