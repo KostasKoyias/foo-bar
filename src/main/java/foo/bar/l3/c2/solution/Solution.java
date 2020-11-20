@@ -26,61 +26,66 @@
  */
 package foo.bar.l3.c2.solution;
 
-import java.lang.Math;
 import java.util.HashMap;
 import java.util.Map;
 
-class BrickMap{
+class BrickMap {
     Map<Integer, Map<Integer, Integer>> map;
 
-    BrickMap(){ map = new HashMap<>(); }
+    BrickMap() {
+        map = new HashMap<>();
+    }
 
-    void put(Integer num, Integer base, Integer value){
-        if(!map.containsKey(num))
+    void put(Integer num, Integer base, Integer value) {
+        if (!map.containsKey(num)) {
             map.put(num, new HashMap<Integer, Integer>());
+        }
 
         map.get(num).put(base, value);
     }
 
-    Integer get(Integer num, Integer base){
-        if(!map.containsKey(num))
+    Integer get(Integer num, Integer base) {
+        if (!map.containsKey(num)) {
             return null;
+        }
 
         return map.get(num).get(base);
     }
 }
 
-public class Solution{
+public class Solution {
 
-    public static int solution(int number){
+    public static int solution(int number) {
 
         final int minBricks = 3;
         BrickMap memo = new BrickMap();
-        memo.put(minBricks , 2, 1); // base case
+        memo.put(minBricks, 2, 1); // base case
 
-        for(int bricks = minBricks + 1; bricks <= number; bricks++){
-            int sum = 0, minBase = (int)Math.ceil((-1 + Math.sqrt(1 + 8 * bricks))/2);
+        for (int bricks = minBricks + 1; bricks <= number; bricks++) {
+            int sum = 0, minBase = (int) Math.ceil((-1 + Math.sqrt(1 + 8 * bricks)) / 2);
 
             // find the minimum number of bricks required for a given 1st layer - base
-            for(int base = minBase; base < bricks; base++){
+            for (int base = minBase; base < bricks; base++) {
 
                 // based on the number of bricks left for a given 1st layer size
                 int leftOver = bricks - base;
 
                 // using at most min(leftOver-1, base-1) bricks, how many ways are
                 // there to build a staircase with what is left
-                if(leftOver >= minBricks)
-                    sum += memo.get(leftOver, Math.min(leftOver-1, base-1));
+                if (leftOver >= minBricks) {
+                    sum += memo.get(leftOver, Math.min(leftOver - 1, base - 1));
+                }
 
                 // if there is also possible to add all leftOver bricks at once
                 // then sum++, this was not counted before because we needed at least 2 levels of bricks
-                if(leftOver < base)
+                if (leftOver < base) {
                     sum++;
+                }
 
                 memo.put(bricks, base, sum);
             }
         }
 
-        return memo.get(number, number-1);
+        return memo.get(number, number - 1);
     }
 }

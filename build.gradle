@@ -13,7 +13,8 @@ checkstyle {
 }
 checkstyleMain {
     source = 'src/main/java/foo/bar/l1'
-//    source = 'src/main/java/foo/bar/l2'
+    source = 'src/main/java/foo/bar/l2'
+    source = 'src/main/java/foo/bar/l3'
 }
 checkstyleTest {
     source ='src/test/java/foo/bar/l1'
