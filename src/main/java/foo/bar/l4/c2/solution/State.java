@@ -3,7 +3,7 @@ package foo.bar.l4.c2.solution;
 import java.util.Arrays;
 import java.util.Objects;
 
-class State{
+class State {
     int node;
     int[] bunnies;
 
@@ -14,8 +14,12 @@ class State{
 
     @Override // override equals & hash to store instances of State in a HashMap
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         State state = (State) object;
         return this.node == state.node &&
                 Arrays.equals(this.bunnies, state.bunnies);
