@@ -13,10 +13,11 @@ I got from
 
 For all problems solved, standard **Java 8** was used.  
 Each level consists of 1 to 3 challenges, each of whom
-has it's own package under src with the corresponding level as root.
+has it's own package under src of the form
+`foo.bar.l${level_number}.c${challenge_number}`.
+Challenge number might be omitted in case it is the only one in that level.
 
 After cloning/forking, please build the project with Gradle as follows
-and type
 
 ```bash
 ./gradlew build
@@ -31,11 +32,11 @@ Then, to test a particular problem, for example `l2.c2`, please type
 
 In each challenge, Google provides 2-3 out of the 5-10 total
 test cases as examples. The rest of them are hidden.  
-For each challenge, source files named **Verify.java**
-run the solution provided under the corresponding
-**Solution.java** file against those test cases.
-Utilities under [Matrix.java](./src/main/java/foo/bar/utils/Matrix.java) are often used
-for common matrix operations throughout the project.
+For each challenge `lx.cy`
+
+* **description** can be found under `src/main/foo/bar/lx/cy/readme.txt`
+* **solution** can be found under `src/main/foo/bar/lx/cy/solution/Solution.java` and
+* **test cases** can be found under `src/test/foo/bar/lx/cy/solution/SolutionTest.java` 
 
 ## Challenge structure
 

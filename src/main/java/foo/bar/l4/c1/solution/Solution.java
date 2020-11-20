@@ -1,6 +1,6 @@
 package foo.bar.l4.c1.solution;
 
-import foo.bar.utils.Matrix;
+import foo.bar.l4.Matrix;
 
 import java.util.ArrayList;
 import java.util.HashMap;
