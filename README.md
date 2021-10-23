@@ -51,8 +51,8 @@ is structured.
 | 4     | 2         | 15 days                           | Another friend referral link        |
 | 5     | 1         | 22 days                           | -                                   |
 
->> 1. A referral link allows the person you send it to, to enter foobar.
->> 2. You are asked to fill out your personal info, if you wish, then
+> 1. A referral link allows the person you send it to, to enter foobar.
+> 2. You are asked to fill out your personal info, if you wish, then
  a Google recruiter will contact you soon.
 
 ## Challenges
@@ -80,13 +80,14 @@ is structured.
 
   1. [Expanding Nebula](./src/main/java/foo/bar/l5/readme.txt)(not solved)
 
->> Note that the *readme* files were slightly simplified
+> Note that the *readme* files were slightly simplified
 while solving the corresponding challenge.
 
-## Contribute
+## End message
 
-You are welcome to fork this repository and submit your own solutions.
-Make a pull request and your version will be reviewed within a few days.
+After completing all challenges, Google will give you a base64 encoded message.
+The key to decode it is your foobar username.
+A [script](./scripts/decode.py) was added that prints this message decoded.
 
 ## More information
 

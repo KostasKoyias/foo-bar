@@ -19,15 +19,22 @@ checkstyleTest {
 }
 
 repositories {
-    jcenter()
+    maven {
+        url 'https://repo.maven.apache.org/maven2'
+        name 'Maven Central'
+    }
+}
+
+ext {
+    junitVersion = "5.8.1"
 }
 
 dependencies {
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'com.google.guava:guava:31.0.1-jre'
     compile group: 'org.openjfx', name: 'javafx', version: '11', ext: 'pom'
 
     // Use JUnit test framework with ParameterizedTest enabled
-    testCompile 'org.junit.jupiter:junit-jupiter-params:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
